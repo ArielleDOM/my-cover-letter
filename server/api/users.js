@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {User} = require('../db/models')
+const {User, Letter} = require('../db/models')
 module.exports = router
 
 const authUser = (req, res, next) => {
@@ -11,7 +11,7 @@ const authUser = (req, res, next) => {
   res.status(403).send('access denied')
 }
 
-router.get('/', authUser, async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
     const users = await User.findAll({
       // explicitly select only the id and email fields - even though
@@ -26,10 +26,26 @@ router.get('/', authUser, async (req, res, next) => {
 })
 
 //api/users/:userId
-router.get('/:userId', authUser, async (req, res, next) => {
+router.get('/:userId', async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.userId)
     res.json(user)
+  } catch (err) {
+    next(err)
+  }
+})
+
+//api/users/letters/:userId
+router.get('/letters/:userId', async (req, res, next) => {
+  try {
+    const letters = await Letter.findAll({
+      where: {
+        userId: req.params.userId
+      }
+    })
+    if (letters) {
+      res.json(letters)
+    }
   } catch (err) {
     next(err)
   }

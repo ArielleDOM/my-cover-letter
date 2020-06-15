@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Letter} = require('../db/models/letter')
+const {Letter} = require('../db/models')
 module.exports = router
 
 const authUser = (req, res, next) => {
@@ -11,27 +11,20 @@ const authUser = (req, res, next) => {
   res.status(403).send('access denied')
 }
 
-//api/letters/:userId
-
-router.get('/userId', authUser, async (req, res, next) => {
+//api/letters
+router.get('/', async (req, res, next) => {
   try {
-    const letters = await Letter.findAll({
-      where: {
-        userId: req.params.userId
-      }
-    })
+    const letters = await Letter.findAll()
     if (letters) {
       res.json(letters)
-    } else {
-      res.json('You have no cover letters')
     }
   } catch (err) {
     next(err)
   }
 })
 
-//api/letters/:letterId
-router.get('/:letterId', authUser, async (req, res, next) => {
+//api/letters/:letterId/
+router.get('/:letterId', async (req, res, next) => {
   try {
     const letters = await Letter.findAll({
       where: {
