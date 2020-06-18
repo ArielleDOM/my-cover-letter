@@ -52,10 +52,10 @@ export class Edit extends React.Component {
   handleSubmit(event) {
     event.preventDefault()
 
-    let letter
-    this.state.phrases.map(phrase => {
-      letter = this.state.body.replace(phrase[0], phrase[1])
-    })
+    let letter = this.state.body
+    for (let [find, replace] of this.state.phrases) {
+      letter = letter.replace(find, replace)
+    }
 
     console.log(letter)
 
@@ -67,46 +67,47 @@ export class Edit extends React.Component {
   render() {
     console.log(this.state)
     return (
-      <div id="edit">
-        <button id="add-bttn" type="button" onClick={this.handleAdd}>
-          Add
-        </button>
-        {this.state.phrases.map(([find, replace], index) => {
-          const changeFind = event => {
-            let phrases = this.state.phrases
-            phrases[index][0] = event.target.value // FIXME?
-            this.setState({phrases})
-          }
-          const changeReplace = event => {
-            let phrases = this.state.phrases
-            phrases[index][1] = event.target.value // FIXME?
-            this.setState({phrases})
-          }
-          return (
-            <div key={index}>
-              <button
-                name={index}
-                id="delete-btn"
-                type="button"
-                onClick={this.handleDelete}
-              >
-                Delete
-              </button>
-              <input type="text" value={find} onChange={changeFind} />
-              <input type="text" value={replace} onChange={changeReplace} />
-            </div>
-          )
-        })}
-        <input
-          name="body"
-          id="letter"
-          type="text"
-          onChange={this.handleChange}
-        />
-        <button id="submit-bttn" type="button" onClick={this.handleSubmit}>
-          Submit
-        </button>
-
+      <div id="writing">
+        <div id="edit">
+          <button id="add-bttn" type="button" onClick={this.handleAdd}>
+            Add
+          </button>
+          {this.state.phrases.map(([find, replace], index) => {
+            const changeFind = event => {
+              let phrases = this.state.phrases
+              phrases[index][0] = event.target.value
+              this.setState({phrases})
+            }
+            const changeReplace = event => {
+              let phrases = this.state.phrases
+              phrases[index][1] = event.target.value
+              this.setState({phrases})
+            }
+            return (
+              <div key={index}>
+                <button
+                  name={index}
+                  id="delete-btn"
+                  type="button"
+                  onClick={this.handleDelete}
+                >
+                  Delete
+                </button>
+                <input type="text" value={find} onChange={changeFind} />
+                <input type="text" value={replace} onChange={changeReplace} />
+              </div>
+            )
+          })}
+          <textarea
+            name="body"
+            id="letter"
+            type="text"
+            onChange={this.handleChange}
+          />
+          <button id="submit-bttn" type="button" onClick={this.handleSubmit}>
+            Submit
+          </button>
+        </div>
         <div id="new-cover">{this.state.newCover}</div>
       </div>
     )

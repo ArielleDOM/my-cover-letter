@@ -44,6 +44,11 @@ div #home {
   flex-direction: column;
 }
 
+#writing {
+  display: flex;
+  flex-direction: row;
+}
+
 button {
   width: 80px;
 }
