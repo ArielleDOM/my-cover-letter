@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {fetchLetters} from '../store/letters'
+import {fetchSingleLetter} from '../store/singletter'
 import Navbar from './navbar'
 import {Link} from 'react-router-dom'
 

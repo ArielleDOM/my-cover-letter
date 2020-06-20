@@ -26,14 +26,14 @@ router.get('/', async (req, res, next) => {
 //api/letters/:userId/:letterId
 router.get('/:userId/:letterId', async (req, res, next) => {
   try {
-    const letters = await Letter.findAll({
+    const letter = await Letter.findAll({
       where: {
         userId: req.params.userId,
         id: req.params.letterId
       }
     })
-    if (letters) {
-      res.json(letters)
+    if (letter) {
+      res.json(letter)
     }
   } catch (err) {
     next(err)
