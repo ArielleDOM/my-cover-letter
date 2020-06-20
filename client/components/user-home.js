@@ -1,8 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {fetchLetters} from '../store/letter'
+import {fetchLetters} from '../store/letters'
 import Navbar from './navbar'
+import {Link} from 'react-router-dom'
 
 /**
  * COMPONENT
@@ -18,16 +19,19 @@ export class UserHome extends React.Component {
 
   render() {
     let {letters, user, email} = this.props
-
+    console.log('USER HOME PROPS', this.props)
     let home
-
     if (letters.length === 0 && letters) {
       home = <div>You have no cover letters</div>
     } else {
       home = (
         <div id="letters-view">
           {letters.map(letter => {
-            return <div key={letter.id}>{letter.title}</div>
+            return (
+              <Link key={letter.id} to={`/letters/${user.id}/${letter.id}`}>
+                <div>{letter.title}</div>
+              </Link>
+            )
           })}
         </div>
       )

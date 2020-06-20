@@ -23,11 +23,12 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-//api/letters/:letterId/
-router.get('/:letterId', async (req, res, next) => {
+//api/letters/:userId/:letterId
+router.get('/:userId/:letterId', async (req, res, next) => {
   try {
     const letters = await Letter.findAll({
       where: {
+        userId: req.params.userId,
         id: req.params.letterId
       }
     })

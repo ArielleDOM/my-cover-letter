@@ -13,11 +13,15 @@ export const fetchLetters = userId => async dispatch => {
   try {
     let res = await axios.get(`/api/users/letters/${userId}`)
     dispatch(getLetters(res.data))
-    console.log('LETTERS', res.data)
   } catch (err) {
     console.error(err)
   }
 }
+
+// const intitalState = {
+//   letters: [],
+//   singleLetter: {}
+// }
 
 export default function(state = [], action) {
   switch (action.type) {
