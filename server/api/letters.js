@@ -39,3 +39,34 @@ router.get('/:userId/:letterId', async (req, res, next) => {
     next(err)
   }
 })
+
+router.post('/', async (req, res, next) => {
+  try {
+    const newLetter = await Letter.create(req.body)
+    res.json(newLetter)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.delete('/:letterId', async (req, res, next) => {
+  try {
+    const letter = await Letter.findByPk(req.params.letterId)
+    await letter.destroy()
+    res.status(204).send()
+  } catch (err) {
+    console.log(err)
+    next(err)
+  }
+})
+
+router.put('/:letterId', async (req, res, next) => {
+  try {
+    const letter = await Letter.findByPk(req.params.letterId)
+    await letter.update(req.body)
+    res.status(200).json(letter)
+  } catch (err) {
+    console.log(err)
+    next(err)
+  }
+})

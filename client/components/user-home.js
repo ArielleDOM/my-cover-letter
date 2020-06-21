@@ -20,7 +20,6 @@ export class UserHome extends React.Component {
 
   render() {
     let {letters, user, email} = this.props
-    console.log('USER HOME PROPS', this.props)
     let home
     if (letters.length === 0 && letters) {
       home = <div>You have no cover letters</div>

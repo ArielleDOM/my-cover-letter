@@ -1,11 +1,14 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchSingleLetter} from '../store/singletter'
+import singletter, {
+  fetchSingleLetter,
+  saveLetterThunk
+} from '../store/singletter'
 import Navbar from './navbar'
 import {Link} from 'react-router-dom'
 import supertest from 'supertest'
 
-export default class EditorForm extends React.Component {
+class EditorForm extends React.Component {
   constructor() {
     super()
     this.state = {
@@ -18,14 +21,18 @@ export default class EditorForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleAdd = this.handleAdd.bind(this)
     this.handleDelete = this.handleDelete.bind(this)
+    this.handleSave = this.handleSave.bind(this)
   }
-  componentDidUpdate(prevProps) {
-    if (this.props.letter !== prevProps.letter) {
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.letter !== this.props.letter) {
+      console.log('prevProps', prevProps)
+      console.log('When I click save', this.props)
+
       this.setState({
         title: this.props.letter.title,
         body: this.props.letter.body,
-        phrases: this.props.letter.phrases,
-        newCover: ''
+        phrases: this.props.letter.phrases
       })
     }
   }
@@ -53,6 +60,16 @@ export default class EditorForm extends React.Component {
     })
   }
 
+  handleSave(event) {
+    event.preventDefault()
+    const newLetter = {
+      title: this.state.title,
+      body: this.state.body,
+      phrases: this.state.phrases
+    }
+    this.props.saveLetter(this.props.letter.id, newLetter)
+  }
+
   handleSubmit(event) {
     event.preventDefault()
 
@@ -66,12 +83,14 @@ export default class EditorForm extends React.Component {
     })
   }
   render() {
-    console.log('STATE', this.state)
+    // console.log('STATE', this.state)
+    console.log('PROPS', this.props)
 
+    let {saveLetter, letter} = this.props
     let {title, body, phrases} = this.state
     let view
 
-    if (title && body && phrases[0]) {
+    if (title && body && phrases) {
       view = (
         <div>
           <Navbar />
@@ -123,7 +142,7 @@ export default class EditorForm extends React.Component {
                 defaultValue={this.state.body}
                 onChange={this.handleChange}
               />
-              <button id="save-bttn" type="button">
+              <button id="save-bttn" type="button" onClick={this.handleSave}>
                 Save
               </button>
               <button
@@ -138,7 +157,20 @@ export default class EditorForm extends React.Component {
           </div>
         </div>
       )
+    } else {
+      view = <div>I AM FAILING</div>
     }
     return <div>{view}</div>
   }
 }
+
+const mapState = state => ({
+  singletter: state.singleletter[0],
+  user: state.user
+})
+
+const mapDispatch = dispatch => ({
+  saveLetter: (id, data) => dispatch(saveLetterThunk(id, data))
+})
+
+export default connect(mapState, mapDispatch)(EditorForm)

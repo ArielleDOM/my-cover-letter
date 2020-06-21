@@ -65,7 +65,6 @@ export class Edit extends React.Component {
   }
 
   render() {
-    console.log(this.state)
     return (
       <div id="writing">
         <div id="edit">
