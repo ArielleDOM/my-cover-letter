@@ -43,16 +43,16 @@ class EditorForm extends React.Component {
     if (changed('phrases')) {
       update('phrases')
     }
-    // if (prevProps.letter !== this.props.letter) {
-    //   console.log('prevProps', prevProps)
-    //   console.log('When I click save', this.props)
+    if (prevProps.letter !== this.props.letter) {
+      console.log('prevProps', prevProps)
+      console.log('When I click save', this.props)
 
-    //   this.setState({
-    //     title: this.props.letter.title,
-    //     body: this.props.letter.body,
-    //     phrases: this.props.letter.phrases
-    //   })
-    // }
+      this.setState({
+        title: this.props.letter.title,
+        body: this.props.letter.body,
+        phrases: this.props.letter.phrases
+      })
+    }
   }
 
   handleChange(event) {
