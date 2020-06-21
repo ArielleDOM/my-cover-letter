@@ -61,7 +61,9 @@ const mapState = state => {
 }
 
 const mapDispatch = dispatch => ({
-  fetchLetters: userId => dispatch(fetchLetters(userId))
+  fetchLetters: userId => dispatch(fetchLetters(userId)),
+  fetchSingleLetter: (userId, letterId) =>
+    dispatch(fetchSingleLetter(userId, letterId))
 })
 
 export default connect(mapState, mapDispatch)(UserHome)
