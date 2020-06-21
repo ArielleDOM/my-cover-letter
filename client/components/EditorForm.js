@@ -15,7 +15,8 @@ class EditorForm extends React.Component {
       title: '',
       body: '',
       phrases: [],
-      newCover: ''
+      newCover: '',
+      save: false
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -25,16 +26,33 @@ class EditorForm extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.letter !== this.props.letter) {
-      console.log('prevProps', prevProps)
-      console.log('When I click save', this.props)
+    const prev = x => (prevProps.letter || {})[x]
+    const curr = x => (this.props.letter || {})[x]
 
-      this.setState({
-        title: this.props.letter.title,
-        body: this.props.letter.body,
-        phrases: this.props.letter.phrases
-      })
+    const changed = x => prev(x) !== curr(x)
+    const update = x => this.setState({[x]: curr(x)})
+
+    if (changed('title')) {
+      update('title')
     }
+
+    if (changed('body')) {
+      update('body')
+    }
+
+    if (changed('phrases')) {
+      update('phrases')
+    }
+    // if (prevProps.letter !== this.props.letter) {
+    //   console.log('prevProps', prevProps)
+    //   console.log('When I click save', this.props)
+
+    //   this.setState({
+    //     title: this.props.letter.title,
+    //     body: this.props.letter.body,
+    //     phrases: this.props.letter.phrases
+    //   })
+    // }
   }
 
   handleChange(event) {
@@ -43,7 +61,7 @@ class EditorForm extends React.Component {
     })
   }
 
-  handleAdd(event) {
+  handleAdd() {
     let phrases = this.state.phrases
     phrases = [...phrases, ['', '']]
     this.setState({phrases})
@@ -60,7 +78,7 @@ class EditorForm extends React.Component {
     })
   }
 
-  handleSave(event) {
+  handleSave() {
     event.preventDefault()
     const newLetter = {
       title: this.state.title,
@@ -68,6 +86,7 @@ class EditorForm extends React.Component {
       phrases: this.state.phrases
     }
     this.props.saveLetter(this.props.letter.id, newLetter)
+    location.reload()
   }
 
   handleSubmit(event) {
@@ -83,14 +102,14 @@ class EditorForm extends React.Component {
     })
   }
   render() {
-    // console.log('STATE', this.state)
+    console.log('STATE', this.state)
     console.log('PROPS', this.props)
 
     let {saveLetter, letter} = this.props
     let {title, body, phrases} = this.state
     let view
 
-    if (title && body && phrases) {
+    if (letter) {
       view = (
         <div>
           <Navbar />
@@ -139,7 +158,7 @@ class EditorForm extends React.Component {
                 name="body"
                 id="letter"
                 type="text"
-                defaultValue={this.state.body}
+                value={this.state.body}
                 onChange={this.handleChange}
               />
               <button id="save-bttn" type="button" onClick={this.handleSave}>
@@ -158,7 +177,7 @@ class EditorForm extends React.Component {
         </div>
       )
     } else {
-      view = <div>I AM FAILING</div>
+      view = <div>SAVING</div>
     }
     return <div>{view}</div>
   }
@@ -170,7 +189,8 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  saveLetter: (id, data) => dispatch(saveLetterThunk(id, data))
+  saveLetter: (id, data) => dispatch(saveLetterThunk(id, data)),
+  fetchSingleLetter: id => dispatch(fetchSingleLetter(id))
 })
 
 export default connect(mapState, mapDispatch)(EditorForm)
