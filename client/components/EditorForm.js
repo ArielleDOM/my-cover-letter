@@ -100,7 +100,7 @@ class EditorForm extends React.Component {
     })
   }
   render() {
-    console.log('STATE', this.state)
+    // console.log('STATE', this.state)
     // console.log('PROPS', this.props)
 
     let {saveLetter, letter} = this.props

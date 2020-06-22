@@ -1,7 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {fetchLetters, createLetterThunk} from '../store/letters'
+import {
+  fetchLetters,
+  createLetterThunk,
+  deleteLetterThunk
+} from '../store/letters'
 import Navbar from './navbar'
 import {Link} from 'react-router-dom'
 // import {all} from '../../server/api/letters'
@@ -13,23 +17,26 @@ export class UserHome extends React.Component {
   constructor() {
     super()
     this.handleCreate = this.handleCreate.bind(this)
+    this.handleDelete = this.handleDelete.bind(this)
   }
 
   componentDidMount() {
     this.props.fetchLetters(this.props.user.id)
   }
+  handleDelete(id) {
+    event.preventDefault()
+    this.props.deleteLetter(id)
+  }
 
   handleCreate(event) {
     event.preventDefault()
-
     this.props.createLetter(this.props.user.id)
   }
 
   render() {
-    let {letters, user, email, createLetter} = this.props
-    let allLetters = letters.all
+    let {letters, user, email} = this.props
 
-    let newLetter = allLetters[allLetters.length - 1]
+    let newLetter = letters[letters.length - 1]
     let data
 
     if (newLetter) {
@@ -42,11 +49,23 @@ export class UserHome extends React.Component {
     } else {
       home = (
         <div id="letters-view">
-          {letters.all.map(letter => {
+          {letters.map(letter => {
             return (
-              <Link key={letter.id} to={`/letters/${user.id}/${letter.id}`}>
+              <div key={letter.id} id="single-cover">
                 <div>{letter.title}</div>
-              </Link>
+                <Link to={`/letters/${user.id}/${letter.id}`}>
+                  <button name="home-delete-btn" type="button">
+                    Edit
+                  </button>
+                </Link>
+                <button
+                  name="home-delete-btn"
+                  type="button"
+                  onClick={() => this.handleDelete(letter.id)}
+                >
+                  Delete
+                </button>
+              </div>
             )
           })}
         </div>
@@ -70,14 +89,14 @@ export class UserHome extends React.Component {
 const mapState = state => {
   return {
     letters: state.letters,
-    email: state.user.email,
     user: state.user
   }
 }
 
 const mapDispatch = dispatch => ({
   fetchLetters: userId => dispatch(fetchLetters(userId)),
-  createLetter: userId => dispatch(createLetterThunk(userId))
+  createLetter: userId => dispatch(createLetterThunk(userId)),
+  deleteLetter: letterId => dispatch(deleteLetterThunk(letterId))
 })
 
 export default connect(mapState, mapDispatch)(UserHome)

@@ -5,6 +5,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+#single-cover {
+  display: flex;
+  flex-direction: row;
+}
+
 #links a {
   display: inline-block;
   justify-content: flex-end;
