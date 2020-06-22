@@ -40,9 +40,12 @@ router.get('/:userId/:letterId', async (req, res, next) => {
   }
 })
 
-router.post('/', async (req, res, next) => {
+router.post('/:userId', async (req, res, next) => {
+  const userId = req.params.userId
   try {
-    const newLetter = await Letter.create(req.body)
+    const newLetter = await Letter.create({
+      userId: userId
+    })
     res.json(newLetter)
   } catch (err) {
     next(err)

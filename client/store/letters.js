@@ -2,12 +2,27 @@ import axios from 'axios'
 import history from '../history'
 
 const GET_LETTERS = 'GET_LETTERS'
-const REMOVE_LETTER = 'REMOVE_LETTER'
+const DELETE_LETTER = 'REMOVE_LETTER'
+const CREATE_LETTER = 'CREATE_LETTER'
 
 const getLetters = letters => ({
   type: GET_LETTERS,
   letters
 })
+
+const createLetter = newLetter => ({
+  type: CREATE_LETTER,
+  newLetter
+})
+
+export const createLetterThunk = userId => async dispatch => {
+  try {
+    let res = await axios.post(`/api/letters/${userId}`)
+    dispatch(createLetter(res.data))
+  } catch (err) {
+    console.error(err)
+  }
+}
 
 export const fetchLetters = userId => async dispatch => {
   try {
@@ -18,15 +33,16 @@ export const fetchLetters = userId => async dispatch => {
   }
 }
 
-// const intitalState = {
-//   letters: [],
-//   singleLetter: {}
-// }
+const intitalState = {
+  all: []
+}
 
-export default function(state = [], action) {
+export default function(state = intitalState, action) {
   switch (action.type) {
     case GET_LETTERS:
-      return action.letters
+      return {...state, all: action.letters}
+    case CREATE_LETTER:
+      return {...state, all: [...state.all, action.newLetter]}
     default:
       return state
   }

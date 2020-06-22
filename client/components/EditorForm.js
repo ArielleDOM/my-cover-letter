@@ -17,7 +17,7 @@ class EditorForm extends React.Component {
       body: '',
       phrases: [['', '']],
       newCover: '',
-      warningMessage: 'Field is required!'
+      warningMessage: 'This field is required!'
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -116,19 +116,17 @@ class EditorForm extends React.Component {
           <Navbar />
           <div id="writing">
             <div id="edit">
-              <label>
-                Title:
-                {!this.state.title &&
-                  this.state.warningMessage && (
-                    <span className="warning">{this.state.warningMessage}</span>
-                  )}
-              </label>
+              <label>Title:</label>
               <input
                 name="title"
                 type="text"
                 value={this.state.title}
                 onChange={this.handleChange}
-              />
+              />{' '}
+              {!this.state.title &&
+                this.state.warningMessage && (
+                  <span className="warning">{this.state.warningMessage}</span>
+                )}
               <button id="add-bttn" type="button" onClick={this.handleAdd}>
                 Add
               </button>

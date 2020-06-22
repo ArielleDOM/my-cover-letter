@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {fetchLetters} from '../store/letters'
-import {fetchSingleLetter} from '../store/singletter'
+import {fetchLetters, createLetterThunk} from '../store/letters'
 import Navbar from './navbar'
 import {Link} from 'react-router-dom'
+import {all} from '../../server/api/letters'
 
 /**
  * COMPONENT
@@ -12,21 +12,28 @@ import {Link} from 'react-router-dom'
 export class UserHome extends React.Component {
   constructor() {
     super()
+    this.handleCreate = this.handleCreate.bind(this)
   }
 
   componentDidMount() {
     this.props.fetchLetters(this.props.user.id)
   }
 
+  handleCreate(event) {
+    event.preventDefault()
+
+    this.props.createLetter(this.props.user.id)
+  }
+
   render() {
-    let {letters, user, email} = this.props
+    let {letters, user, email, createLetter} = this.props
     let home
     if (letters.length === 0 && letters) {
       home = <div>You have no cover letters</div>
     } else {
       home = (
         <div id="letters-view">
-          {letters.map(letter => {
+          {letters.all.map(letter => {
             return (
               <Link key={letter.id} to={`/letters/${user.id}/${letter.id}`}>
                 <div>{letter.title}</div>
@@ -39,7 +46,7 @@ export class UserHome extends React.Component {
     return (
       <div>
         <Navbar />
-        <button name="create-btn" type="button">
+        <button name="create-btn" type="button" onClick={this.handleCreate}>
           Create Cover
         </button>
         {home}
@@ -61,8 +68,7 @@ const mapState = state => {
 
 const mapDispatch = dispatch => ({
   fetchLetters: userId => dispatch(fetchLetters(userId)),
-  fetchSingleLetter: (userId, letterId) =>
-    dispatch(fetchSingleLetter(userId, letterId))
+  createLetter: userId => dispatch(createLetterThunk(userId))
 })
 
 export default connect(mapState, mapDispatch)(UserHome)
