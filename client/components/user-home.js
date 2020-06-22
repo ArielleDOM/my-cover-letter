@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {fetchLetters, createLetterThunk} from '../store/letters'
 import Navbar from './navbar'
 import {Link} from 'react-router-dom'
-import {all} from '../../server/api/letters'
+// import {all} from '../../server/api/letters'
 
 /**
  * COMPONENT
@@ -27,6 +27,15 @@ export class UserHome extends React.Component {
 
   render() {
     let {letters, user, email, createLetter} = this.props
+    let allLetters = letters.all
+
+    let newLetter = allLetters[allLetters.length - 1]
+    let data
+
+    if (newLetter) {
+      data = newLetter
+    }
+
     let home
     if (letters.length === 0 && letters) {
       home = <div>You have no cover letters</div>

@@ -122,7 +122,7 @@ class EditorForm extends React.Component {
                 type="text"
                 value={this.state.title}
                 onChange={this.handleChange}
-              />{' '}
+              />
               {!this.state.title &&
                 this.state.warningMessage && (
                   <span className="warning">{this.state.warningMessage}</span>
