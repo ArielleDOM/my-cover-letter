@@ -15,7 +15,7 @@ class EditorForm extends React.Component {
     this.state = {
       title: '',
       body: '',
-      phrases: [['', '']],
+      phrases: [],
       newCover: '',
       warningMessage: 'This field is required!'
     }
@@ -45,9 +45,6 @@ class EditorForm extends React.Component {
       update('phrases')
     }
     if (prevProps.letter !== this.props.letter) {
-      console.log('prevProps', prevProps)
-      console.log('When I click save', this.props)
-
       this.setState({
         title: this.props.letter.title,
         body: this.props.letter.body,
@@ -103,7 +100,7 @@ class EditorForm extends React.Component {
     })
   }
   render() {
-    // console.log('STATE', this.state)
+    console.log('STATE', this.state)
     // console.log('PROPS', this.props)
 
     let {saveLetter, letter} = this.props

@@ -4,13 +4,15 @@ const db = require('../db')
 const Letter = db.define('letter', {
   title: {
     type: Sequelize.TEXT,
-    unique: true
+    defaultValue: 'Untitled Cover Letter'
   },
   body: {
-    type: Sequelize.TEXT
+    type: Sequelize.TEXT,
+    defaultValue: ''
   },
   phrases: {
-    type: Sequelize.ARRAY(Sequelize.TEXT)
+    type: Sequelize.ARRAY(Sequelize.TEXT),
+    defaultValue: [['', '']]
   }
 })
 
