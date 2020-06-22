@@ -1,6 +1,15 @@
 const router = require('express').Router()
-const {User} = require('../db/models')
+const {User, Letter} = require('../db/models')
 module.exports = router
+
+const authUser = (req, res, next) => {
+  if (req.user) {
+    if (req.user.dataValues.id === parseInt(req.params.userId, 10))
+      return next()
+  }
+
+  res.status(403).send('access denied')
+}
 
 router.get('/', async (req, res, next) => {
   try {
@@ -11,6 +20,32 @@ router.get('/', async (req, res, next) => {
       attributes: ['id', 'email']
     })
     res.json(users)
+  } catch (err) {
+    next(err)
+  }
+})
+
+//api/users/:userId
+router.get('/:userId', async (req, res, next) => {
+  try {
+    const user = await User.findByPk(req.params.userId)
+    res.json(user)
+  } catch (err) {
+    next(err)
+  }
+})
+
+//api/users/letters/:userId
+router.get('/letters/:userId', async (req, res, next) => {
+  try {
+    const letters = await Letter.findAll({
+      where: {
+        userId: req.params.userId
+      }
+    })
+    if (letters) {
+      res.json(letters)
+    }
   } catch (err) {
     next(err)
   }

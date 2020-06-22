@@ -1,10 +1,73 @@
 body {
-  font-family: sans-serif;
+  margin: 0;
+  font-family: 'Roboto';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  text-decoration: none;
+#links a {
+  display: inline-block;
+  justify-content: flex-end;
+  margin: 1em;
+  color: inherit;
+  text-decoration: inherit;
 }
+
+#links a:hover {
+  text-decoration: none;
+  background-color: #daac31;
+  color: #242424;
+}
+
+div #app {
+  scroll-snap-align: center;
+  background-color: #fffef7;
+  height: 100vh;
+  padding-top: 2vh;
+  margin: auto;
+  /* this used to be 5vh */
+}
+
+div #home {
+  background-color: #fcf9ec;
+  background: url('/Notebook.jpg');
+  height: 100vh;
+  width: 100vw;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: fixed;
+  position: relative;
+}
+
+#edit {
+  display: flex;
+  flex-direction: column;
+}
+
+#writing {
+  display: flex;
+  flex-direction: row;
+}
+
+button {
+  width: 80px;
+}
+
+#letter {
+  height: 30vh;
+  width: 40vw;
+}
+
+#logo {
+  font-family: 'Roboto';
+  font-size: 600%;
+  position: center;
+}
+
+/* a {
+  text-decoration: none;
+  color: inherit;
+} */
 
 label {
   display: block;
