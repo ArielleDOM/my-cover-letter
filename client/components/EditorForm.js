@@ -7,6 +7,7 @@ import singletter, {
 import Navbar from './navbar'
 import {Link} from 'react-router-dom'
 import supertest from 'supertest'
+import Loading from '../components/Loading'
 
 class EditorForm extends React.Component {
   constructor() {
@@ -14,9 +15,9 @@ class EditorForm extends React.Component {
     this.state = {
       title: '',
       body: '',
-      phrases: [],
+      phrases: [['', '']],
       newCover: '',
-      save: false
+      warningMessage: 'Field is required!'
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -102,8 +103,8 @@ class EditorForm extends React.Component {
     })
   }
   render() {
-    console.log('STATE', this.state)
-    console.log('PROPS', this.props)
+    // console.log('STATE', this.state)
+    // console.log('PROPS', this.props)
 
     let {saveLetter, letter} = this.props
     let {title, body, phrases} = this.state
@@ -115,6 +116,13 @@ class EditorForm extends React.Component {
           <Navbar />
           <div id="writing">
             <div id="edit">
+              <label>
+                Title:
+                {!this.state.title &&
+                  this.state.warningMessage && (
+                    <span className="warning">{this.state.warningMessage}</span>
+                  )}
+              </label>
               <input
                 name="title"
                 type="text"
@@ -161,7 +169,12 @@ class EditorForm extends React.Component {
                 value={this.state.body}
                 onChange={this.handleChange}
               />
-              <button id="save-bttn" type="button" onClick={this.handleSave}>
+              <button
+                id="save-bttn"
+                type="button"
+                onClick={this.handleSave}
+                disabled={!this.state.title}
+              >
                 Save
               </button>
               <button
@@ -176,9 +189,16 @@ class EditorForm extends React.Component {
           </div>
         </div>
       )
-    } else {
-      view = <div>SAVING</div>
     }
+    // else {
+    // //   view = <div>
+    // //       <Loading/>
+    // //   </div>
+
+    // //   setTimeout(() => {
+    // //       location.reload()
+    // //   }, 2000);
+    // }
     return <div>{view}</div>
   }
 }
