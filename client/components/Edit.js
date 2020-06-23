@@ -57,8 +57,6 @@ export class Edit extends React.Component {
       letter = letter.replace(find, replace)
     }
 
-    console.log(letter)
-
     this.setState({
       newCover: letter
     })
@@ -66,9 +64,9 @@ export class Edit extends React.Component {
 
   render() {
     return (
-      <div id="writing">
+      <div className="writing">
         <div id="edit">
-          <button id="add-bttn" type="button" onClick={this.handleAdd}>
+          <button className="brown-btn" type="button" onClick={this.handleAdd}>
             Add
           </button>
           {this.state.phrases.map(([find, replace], index) => {
@@ -86,7 +84,7 @@ export class Edit extends React.Component {
               <div key={index}>
                 <button
                   name={index}
-                  id="delete-btn"
+                  className="delete-btn"
                   type="button"
                   onClick={this.handleDelete}
                 >
@@ -97,17 +95,23 @@ export class Edit extends React.Component {
               </div>
             )
           })}
-          <textarea
-            name="body"
-            id="letter"
-            type="text"
-            onChange={this.handleChange}
-          />
-          <button id="submit-bttn" type="button" onClick={this.handleSubmit}>
+          <div className="cover-letter">
+            <textarea
+              name="body"
+              id="letter"
+              type="text"
+              onChange={this.handleChange}
+            />
+          </div>
+          <button
+            className="brown-btn"
+            type="button"
+            onClick={this.handleSubmit}
+          >
             Submit
           </button>
         </div>
-        <div id="new-cover">{this.state.newCover}</div>
+        <div className="new-cover">{this.state.newCover}</div>
       </div>
     )
   }

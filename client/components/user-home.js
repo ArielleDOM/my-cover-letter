@@ -48,23 +48,26 @@ export class UserHome extends React.Component {
       home = <div>You have no cover letters</div>
     } else {
       home = (
-        <div id="letters-view">
+        <div>
           {letters.map(letter => {
             return (
-              <div key={letter.id} id="single-cover">
-                <div>{letter.title}</div>
-                <Link to={`/letters/${user.id}/${letter.id}`}>
-                  <button name="home-delete-btn" type="button">
-                    Edit
+              <div key={letter.id} className="letterContainer">
+                <h3>{letter.title}</h3>
+                <div className="home-btns">
+                  <Link to={`/letters/${user.id}/${letter.id}`}>
+                    <button className="brown-btn" type="button">
+                      Edit
+                    </button>
+                  </Link>
+                  <div className="divider" />
+                  <button
+                    className="delete-btn"
+                    type="button"
+                    onClick={() => this.handleDelete(letter.id)}
+                  >
+                    Delete
                   </button>
-                </Link>
-                <button
-                  name="home-delete-btn"
-                  type="button"
-                  onClick={() => this.handleDelete(letter.id)}
-                >
-                  Delete
-                </button>
+                </div>
               </div>
             )
           })}
@@ -72,10 +75,10 @@ export class UserHome extends React.Component {
       )
     }
     return (
-      <div>
+      <div className="user-home">
         <Navbar />
-        <button name="create-btn" type="button" onClick={this.handleCreate}>
-          Create Cover
+        <button className="brown-btn" type="button" onClick={this.handleCreate}>
+          Create
         </button>
         {home}
       </div>

@@ -100,7 +100,7 @@ class EditorForm extends React.Component {
     })
   }
   render() {
-    // console.log('STATE', this.state)
+    console.log('STATE', this.state)
     // console.log('PROPS', this.props)
 
     let {saveLetter, letter} = this.props
@@ -109,12 +109,12 @@ class EditorForm extends React.Component {
 
     if (letter) {
       view = (
-        <div>
-          <Navbar />
-          <div id="writing">
+        <div className="user-writing">
+          <div>
             <div id="edit">
-              <label>Title:</label>
+              <label className="edit-title">Title:</label>
               <input
+                className="edit-title-input"
                 name="title"
                 type="text"
                 value={this.state.title}
@@ -124,9 +124,15 @@ class EditorForm extends React.Component {
                 this.state.warningMessage && (
                   <span className="warning">{this.state.warningMessage}</span>
                 )}
-              <button id="add-bttn" type="button" onClick={this.handleAdd}>
-                Add
-              </button>
+              <div className="add-btn">
+                <button
+                  className="brown-btn"
+                  type="button"
+                  onClick={this.handleAdd}
+                >
+                  Add
+                </button>
+              </div>
               {this.state.phrases.map(([find, replace], index) => {
                 const changeFind = event => {
                   let phrases = this.state.phrases
@@ -142,7 +148,7 @@ class EditorForm extends React.Component {
                   <div key={index}>
                     <button
                       name={index}
-                      id="delete-btn"
+                      className="delete-btn"
                       type="button"
                       onClick={this.handleDelete}
                     >
@@ -157,15 +163,17 @@ class EditorForm extends React.Component {
                   </div>
                 )
               })}
-              <textarea
-                name="body"
-                id="letter"
-                type="text"
-                value={this.state.body}
-                onChange={this.handleChange}
-              />
+              <div className="cover-letter">
+                <textarea
+                  name="body"
+                  id="letter"
+                  type="text"
+                  value={this.state.body}
+                  onChange={this.handleChange}
+                />
+              </div>
               <button
-                id="save-bttn"
+                className="brown-btn"
                 type="button"
                 onClick={this.handleSave}
                 disabled={!this.state.title}
@@ -173,14 +181,14 @@ class EditorForm extends React.Component {
                 Save
               </button>
               <button
-                id="submit-bttn"
+                className="brown-btn"
                 type="button"
                 onClick={this.handleSubmit}
               >
                 Submit
               </button>
             </div>
-            <div id="new-cover">{this.state.newCover}</div>
+            <div className="new-cover">{this.state.newCover}</div>
           </div>
         </div>
       )
@@ -194,7 +202,12 @@ class EditorForm extends React.Component {
     // //       location.reload()
     // //   }, 2000);
     // }
-    return <div>{view}</div>
+    return (
+      <div>
+        <Navbar />
+        {view}
+      </div>
+    )
   }
 }
 
