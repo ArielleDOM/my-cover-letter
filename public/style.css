@@ -34,6 +34,27 @@ html {
 
 .heading {
   font-size: 2.5em;
+  font-weight: 500;
+  padding-bottom: 10px;
+  margin-bottom: 18px;
+}
+
+.heading a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.heading a:hover {
+  background-color: #daac31;
+  text-decoration: none;
+  color: #242424;
+}
+
+/* .heading:hover{
+  background-color: #daac31;
+} */
+
+.form-heading {
   padding-bottom: 10px;
   margin-bottom: 18px;
 }
@@ -208,7 +229,6 @@ div #app {
   height: 100vh;
   padding-top: 2vh;
   margin: auto;
-  /* this used to be 5vh */
 }
 
 #edit {
@@ -242,13 +262,31 @@ label {
   display: block;
 }
 
-nav a {
-  display: inline-block;
-  justify-content: center;
-  margin: 1em;
-}
-
-.navbar h1 {
+.navbar {
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+nav a {
+  margin: 1em;
+  text-decoration: none;
+}
+
+.navbar a {
+  margin: 1em;
+  color: inherit;
+  text-decoration: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.navbar a:hover {
+  text-decoration: none;
+  background-color: #daac31;
+  color: #242424;
 }

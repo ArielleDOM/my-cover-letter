@@ -8,7 +8,7 @@ import Typewriter from 'typewriter-effect'
 
 const initialState = {
   body: '',
-  phrases: [],
+  phrases: [['', '']],
   newCover: ''
 }
 export class Edit extends React.Component {

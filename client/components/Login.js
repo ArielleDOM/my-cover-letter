@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth} from '../store'
 import {Link} from 'react-router-dom'
+import Typewriter from 'typewriter-effect'
 /**
  * COMPONENT
  */
@@ -16,7 +17,21 @@ export const Login = props => {
       <form onSubmit={handleSubmit} name={name}>
         {/* LOGIN FORM */}
         <div className="joinOuterContainer">
-          <h1 className="heading">Login</h1>
+          <div className="heading">
+            <Link to="/">
+              <Typewriter
+                onInit={typewriter => {
+                  typewriter
+                    .typeString('My Cover Letter')
+                    // .callFunction(() => {
+                    //   console.log("String typed out!");
+                    // })
+                    .start()
+                }}
+              />
+            </Link>
+          </div>
+          <h3 className="form-heading">Login</h3>
           <div className="row form-width mx-auto">
             <label className="col-sm-3" htmlFor="email">
               <span>Email</span>

@@ -12,7 +12,7 @@ const authUser = (req, res, next) => {
 }
 
 //api/letters
-router.get('/', async (req, res, next) => {
+router.get('/', authUser, async (req, res, next) => {
   try {
     const letters = await Letter.findAll()
     if (letters) {
@@ -24,7 +24,7 @@ router.get('/', async (req, res, next) => {
 })
 
 //api/letters/:userId/:letterId
-router.get('/:userId/:letterId', async (req, res, next) => {
+router.get('/:userId/:letterId', authUser, async (req, res, next) => {
   try {
     const letter = await Letter.findAll({
       where: {
@@ -40,7 +40,7 @@ router.get('/:userId/:letterId', async (req, res, next) => {
   }
 })
 
-router.post('/:userId', async (req, res, next) => {
+router.post('/:userId', authUser, async (req, res, next) => {
   const userId = req.params.userId
   try {
     const newLetter = await Letter.create({
@@ -52,7 +52,7 @@ router.post('/:userId', async (req, res, next) => {
   }
 })
 
-router.delete('/:letterId', async (req, res, next) => {
+router.delete('/:letterId', authUser, async (req, res, next) => {
   try {
     const letter = await Letter.findByPk(req.params.letterId)
     await letter.destroy()
@@ -63,7 +63,7 @@ router.delete('/:letterId', async (req, res, next) => {
   }
 })
 
-router.put('/:letterId', async (req, res, next) => {
+router.put('/:letterId', authUser, async (req, res, next) => {
   try {
     const letter = await Letter.findByPk(req.params.letterId)
     await letter.update(req.body)
