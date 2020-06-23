@@ -47,6 +47,10 @@ export const Login = props => {
           <br />
           <div className="row">
             <div className="col">
+              {error &&
+                error.response && (
+                  <div className="err-msg"> {error.response.data} </div>
+                )}
               <button className="brown-btn" type="submit">
                 {displayName}
               </button>

@@ -51,6 +51,10 @@ const SignupForm = props => {
           <br />
           <div className="row">
             <div className="col">
+              {error &&
+                error.response && (
+                  <div className="err-msg">Email is not valid</div>
+                )}
               <button className="brown-btn" type="submit">
                 {displayName}
               </button>
@@ -59,12 +63,6 @@ const SignupForm = props => {
               </div>
             </div>
           </div>
-          {error &&
-            error.response && (
-              <div id="errorMessage">
-                <br /> {error.response.data}{' '}
-              </div>
-            )}
         </div>
       </form>
     </div>
