@@ -17,10 +17,10 @@ const saveLetter = (id, data) => ({
   data
 })
 
-export const saveLetterThunk = (id, data) => {
+export const saveLetterThunk = (userId, letterId, data) => {
   return async dispatch => {
-    await axios.put(`/api/letters/${id}`, data)
-    dispatch(saveLetter(id, data))
+    await axios.put(`/api/letters/${userId}/${letterId}`, data)
+    dispatch(saveLetter(letterId, data))
   }
 }
 

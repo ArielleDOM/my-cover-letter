@@ -17,19 +17,19 @@ async function seed() {
       title: 'main cover letter',
       body:
         'I use to work at [old company], and I really want a job at, [company name]',
-      phrases: [['[old company]', ''], ['[company name', '']],
+      phrases: [['[old company]', ''], ['[company name]', '']],
       userId: 1
     }),
     Letter.create({
       title: 'cover letter',
       body: 'I really reall really want a job at [company name]',
-      phrases: [['[company name', '']],
+      phrases: [['[company name]', '']],
       userId: 2
     }),
     Letter.create({
       title: 'CL',
       body: 'This is my cover letter for [company name]',
-      phrases: [['[company name', '']],
+      phrases: [['[company name]', '']],
       userId: 1
     })
   ])

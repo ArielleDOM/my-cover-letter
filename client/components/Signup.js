@@ -19,12 +19,7 @@ const SignupForm = props => {
             <Link to="/">
               <Typewriter
                 onInit={typewriter => {
-                  typewriter
-                    .typeString('My Cover Letter')
-                    // .callFunction(() => {
-                    //   console.log("String typed out!");
-                    // })
-                    .start()
+                  typewriter.typeString('My Cover Letter').start()
                 }}
               />
             </Link>

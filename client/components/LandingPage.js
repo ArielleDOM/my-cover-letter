@@ -20,12 +20,7 @@ export class LandingPage extends React.Component {
             <div id="logo">
               <Typewriter
                 onInit={typewriter => {
-                  typewriter
-                    .typeString('My Cover Letter')
-                    // .callFunction(() => {
-                    //   console.log("String typed out!");
-                    // })
-                    .start()
+                  typewriter.typeString('My Cover Letter').start()
                 }}
               />
             </div>

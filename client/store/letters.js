@@ -20,9 +20,9 @@ const deleteLetter = letterId => ({
   letterId
 })
 
-export const deleteLetterThunk = letterId => async dispatch => {
+export const deleteLetterThunk = (userId, letterId) => async dispatch => {
   try {
-    await axios.delete(`/api/letters/${letterId}`)
+    await axios.delete(`/api/letters/${userId}/${letterId}`)
     dispatch(deleteLetter(letterId))
   } catch (err) {
     console.error(err)

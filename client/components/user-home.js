@@ -23,9 +23,9 @@ export class UserHome extends React.Component {
   componentDidMount() {
     this.props.fetchLetters(this.props.user.id)
   }
-  handleDelete(id) {
+  handleDelete(userId, letterId) {
     event.preventDefault()
-    this.props.deleteLetter(id)
+    this.props.deleteLetter(userId, letterId)
   }
 
   handleCreate(event) {
@@ -63,7 +63,7 @@ export class UserHome extends React.Component {
                   <button
                     className="delete-btn"
                     type="button"
-                    onClick={() => this.handleDelete(letter.id)}
+                    onClick={() => this.handleDelete(user.id, letter.id)}
                   >
                     Delete
                   </button>
@@ -99,7 +99,8 @@ const mapState = state => {
 const mapDispatch = dispatch => ({
   fetchLetters: userId => dispatch(fetchLetters(userId)),
   createLetter: userId => dispatch(createLetterThunk(userId)),
-  deleteLetter: letterId => dispatch(deleteLetterThunk(letterId))
+  deleteLetter: (userId, letterId) =>
+    dispatch(deleteLetterThunk(userId, letterId))
 })
 
 export default connect(mapState, mapDispatch)(UserHome)

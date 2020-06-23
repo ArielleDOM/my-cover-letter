@@ -7,7 +7,6 @@ const authUser = (req, res, next) => {
     if (req.user.dataValues.id === parseInt(req.params.userId, 10))
       return next()
   }
-
   res.status(403).send('access denied')
 }
 
@@ -52,7 +51,7 @@ router.post('/:userId', authUser, async (req, res, next) => {
   }
 })
 
-router.delete('/:letterId', authUser, async (req, res, next) => {
+router.delete('/:userId/:letterId', authUser, async (req, res, next) => {
   try {
     const letter = await Letter.findByPk(req.params.letterId)
     await letter.destroy()
@@ -63,7 +62,7 @@ router.delete('/:letterId', authUser, async (req, res, next) => {
   }
 })
 
-router.put('/:letterId', authUser, async (req, res, next) => {
+router.put('/:userId/:letterId', authUser, async (req, res, next) => {
   try {
     const letter = await Letter.findByPk(req.params.letterId)
     await letter.update(req.body)

@@ -83,7 +83,7 @@ class EditorForm extends React.Component {
       body: this.state.body,
       phrases: this.state.phrases
     }
-    this.props.saveLetter(this.props.letter.id, newLetter)
+    this.props.saveLetter(this.props.user.id, this.props.letter.id, newLetter)
     location.reload()
   }
 
@@ -100,9 +100,6 @@ class EditorForm extends React.Component {
     })
   }
   render() {
-    console.log('STATE', this.state)
-    // console.log('PROPS', this.props)
-
     let {saveLetter, letter} = this.props
     let {title, body, phrases} = this.state
     let view
@@ -214,7 +211,8 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  saveLetter: (id, data) => dispatch(saveLetterThunk(id, data)),
+  saveLetter: (userId, letterId, data) =>
+    dispatch(saveLetterThunk(userId, letterId, data)),
   fetchSingleLetter: id => dispatch(fetchSingleLetter(id))
 })
 
