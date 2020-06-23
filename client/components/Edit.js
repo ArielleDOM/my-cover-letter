@@ -66,9 +66,15 @@ export class Edit extends React.Component {
     return (
       <div className="writing">
         <div id="edit">
-          <button className="brown-btn" type="button" onClick={this.handleAdd}>
-            Add
-          </button>
+          <div className="add-btn">
+            <button
+              className="brown-btn"
+              type="button"
+              onClick={this.handleAdd}
+            >
+              Add
+            </button>
+          </div>
           {this.state.phrases.map(([find, replace], index) => {
             const changeFind = event => {
               let phrases = this.state.phrases
@@ -111,7 +117,9 @@ export class Edit extends React.Component {
             Submit
           </button>
         </div>
-        <div className="new-cover">{this.state.newCover}</div>
+        <div className="new-cover">
+          <div className="new-cover-writing">{this.state.newCover}</div>
+        </div>
       </div>
     )
   }

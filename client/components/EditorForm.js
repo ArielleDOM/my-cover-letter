@@ -110,98 +110,83 @@ class EditorForm extends React.Component {
     if (letter) {
       view = (
         <div className="user-writing">
-          <div>
-            <div id="edit">
-              <label className="edit-title">Title:</label>
-              <input
-                className="edit-title-input"
-                name="title"
-                type="text"
-                value={this.state.title}
-                onChange={this.handleChange}
-              />
-              {!this.state.title &&
-                this.state.warningMessage && (
-                  <span className="warning">{this.state.warningMessage}</span>
-                )}
-              <div className="add-btn">
-                <button
-                  className="brown-btn"
-                  type="button"
-                  onClick={this.handleAdd}
-                >
-                  Add
-                </button>
-              </div>
-              {this.state.phrases.map(([find, replace], index) => {
-                const changeFind = event => {
-                  let phrases = this.state.phrases
-                  phrases[index][0] = event.target.value
-                  this.setState({phrases})
-                }
-                const changeReplace = event => {
-                  let phrases = this.state.phrases
-                  phrases[index][1] = event.target.value
-                  this.setState({phrases})
-                }
-                return (
-                  <div key={index}>
-                    <button
-                      name={index}
-                      className="delete-btn"
-                      type="button"
-                      onClick={this.handleDelete}
-                    >
-                      Delete
-                    </button>
-                    <input type="text" value={find} onChange={changeFind} />
-                    <input
-                      type="text"
-                      value={replace}
-                      onChange={changeReplace}
-                    />
-                  </div>
-                )
-              })}
-              <div className="cover-letter">
-                <textarea
-                  name="body"
-                  id="letter"
-                  type="text"
-                  value={this.state.body}
-                  onChange={this.handleChange}
-                />
-              </div>
+          <div id="edit">
+            <label className="edit-title">Title:</label>
+            <input
+              className="edit-title-input"
+              name="title"
+              type="text"
+              value={this.state.title}
+              onChange={this.handleChange}
+            />
+            {!this.state.title &&
+              this.state.warningMessage && (
+                <span className="warning">{this.state.warningMessage}</span>
+              )}
+            <div className="add-btn">
               <button
                 className="brown-btn"
                 type="button"
-                onClick={this.handleSave}
-                disabled={!this.state.title}
+                onClick={this.handleAdd}
               >
-                Save
-              </button>
-              <button
-                className="brown-btn"
-                type="button"
-                onClick={this.handleSubmit}
-              >
-                Submit
+                Add
               </button>
             </div>
-            <div className="new-cover">{this.state.newCover}</div>
+            {this.state.phrases.map(([find, replace], index) => {
+              const changeFind = event => {
+                let phrases = this.state.phrases
+                phrases[index][0] = event.target.value
+                this.setState({phrases})
+              }
+              const changeReplace = event => {
+                let phrases = this.state.phrases
+                phrases[index][1] = event.target.value
+                this.setState({phrases})
+              }
+              return (
+                <div key={index}>
+                  <button
+                    name={index}
+                    className="delete-btn"
+                    type="button"
+                    onClick={this.handleDelete}
+                  >
+                    Delete
+                  </button>
+                  <input type="text" value={find} onChange={changeFind} />
+                  <input type="text" value={replace} onChange={changeReplace} />
+                </div>
+              )
+            })}
+            <div className="cover-letter">
+              <textarea
+                name="body"
+                id="letter"
+                type="text"
+                value={this.state.body}
+                onChange={this.handleChange}
+              />
+            </div>
+            <button
+              className="brown-btn"
+              type="button"
+              onClick={this.handleSave}
+              disabled={!this.state.title}
+            >
+              Save
+            </button>
+            <button
+              className="brown-btn"
+              type="button"
+              onClick={this.handleSubmit}
+            >
+              Submit
+            </button>
           </div>
+          <div className="user-new-cover">{this.state.newCover}</div>
         </div>
       )
     }
-    // else {
-    // //   view = <div>
-    // //       <Loading/>
-    // //   </div>
-
-    // //   setTimeout(() => {
-    // //       location.reload()
-    // //   }, 2000);
-    // }
     return (
       <div>
         <Navbar />

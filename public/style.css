@@ -1,8 +1,5 @@
 body {
-  /* background-image: url('Notebook.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center; */
+  background-color: #fcf9ec;
   margin: 0;
   font-family: 'Roboto';
   -webkit-font-smoothing: antialiased;
@@ -21,9 +18,9 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  /* min-height: 100%; */
   height: 100%;
 }
+
 .login-container {
   padding: 50px;
   width: 50%;
@@ -72,25 +69,35 @@ body {
   padding-top: 3rem;
 }
 
-/* .user-writing{
+.user-writing {
   display: flex;
-  flex-direction: row; 
   justify-content: space-around;
   padding-top: 3rem;
-} */
+}
+
+.user-new-cover {
+  width: 40vw;
+  min-width: 300px;
+  min-height: 800px;
+  background-color: violet;
+}
 
 .slogan {
   display: flex;
-  padding-top: 2rem;
+  padding-top: 10rem;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  justify-content: space-around;
 }
 .new-cover {
   width: 40vw;
-  min-width: 300px;
   background-color: white;
   align-items: center;
+  box-shadow: 0 5px 15px 0 rgba(46, 61, 73, 0.12);
+}
+
+.new-cover-writing {
+  padding: 1rem;
 }
 
 .warning {
@@ -143,6 +150,7 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  size: 10%;
 }
 
 .links a {
@@ -157,6 +165,22 @@ body {
   color: #242424;
 }
 
+.home {
+  background: url('/Notebook.jpg');
+  height: 100vh;
+  width: 98.7vw;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: fixed;
+  position: relative;
+}
+
+.home-editor {
+  background-color: #fcf9ec;
+  padding-top: 10rem;
+  padding-bottom: 10rem;
+}
+
 div #app {
   scroll-snap-align: center;
   background-color: #fffef7;
@@ -164,17 +188,6 @@ div #app {
   padding-top: 2vh;
   margin: auto;
   /* this used to be 5vh */
-}
-
-.home {
-  background-color: #fcf9ec;
-  background: url('/Notebook.jpg');
-  height: 100vh;
-  width: 100vw;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: fixed;
-  position: fixed;
 }
 
 #edit {
@@ -193,7 +206,7 @@ button {
 
 #logo {
   font-family: 'Roboto';
-  font-size: 700%;
+  font-size: 800%;
 }
 
 .description {
