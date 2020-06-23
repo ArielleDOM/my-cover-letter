@@ -111,11 +111,11 @@ class EditorForm extends React.Component {
       view = (
         <div className="user-writing">
           <div id="edit">
-            <label className="edit-title">Title:</label>
             <input
               className="edit-title-input"
               name="title"
               type="text"
+              placeholder="Enter Title"
               value={this.state.title}
               onChange={this.handleChange}
             />
@@ -153,8 +153,18 @@ class EditorForm extends React.Component {
                   >
                     Delete
                   </button>
-                  <input type="text" value={find} onChange={changeFind} />
-                  <input type="text" value={replace} onChange={changeReplace} />
+                  <input
+                    type="text"
+                    value={find}
+                    onChange={changeFind}
+                    placeholder="Find phrase"
+                  />
+                  <input
+                    type="text"
+                    value={replace}
+                    onChange={changeReplace}
+                    placeholder="Replace phrase"
+                  />
                 </div>
               )
             })}
@@ -183,12 +193,14 @@ class EditorForm extends React.Component {
               Submit
             </button>
           </div>
-          <div className="user-new-cover">{this.state.newCover}</div>
+          <div className="user-new-cover">
+            <div className="user-new-cover-writing">{this.state.newCover}</div>
+          </div>
         </div>
       )
     }
     return (
-      <div>
+      <div className="user-editor-form">
         <Navbar />
         {view}
       </div>

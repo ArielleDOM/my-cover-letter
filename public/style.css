@@ -6,6 +6,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+html {
+  background-color: #fcf9ec;
+}
+
 .vertical-center {
   min-height: 100%;
   min-height: 75vh;
@@ -55,7 +59,11 @@ body {
   width: auto;
 }
 .edit-title-input {
-  width: 40rem;
+  width: 30rem;
+}
+
+.edit-title {
+  font-weight: bolder;
 }
 
 .add-btn {
@@ -69,6 +77,13 @@ body {
   padding-top: 3rem;
 }
 
+.user-home {
+  height: auto;
+  width: auto;
+  padding: 2rem;
+  background: #fcf9ec;
+}
+
 .user-writing {
   display: flex;
   justify-content: space-around;
@@ -77,9 +92,12 @@ body {
 
 .user-new-cover {
   width: 40vw;
-  min-width: 300px;
-  min-height: 800px;
-  background-color: violet;
+  background-color: white;
+  box-shadow: 0 5px 15px 0 rgba(46, 61, 73, 0.12);
+}
+
+.user-new-cover-writing {
+  padding: 1rem;
 }
 
 .slogan {
@@ -92,7 +110,6 @@ body {
 .new-cover {
   width: 40vw;
   background-color: white;
-  align-items: center;
   box-shadow: 0 5px 15px 0 rgba(46, 61, 73, 0.12);
 }
 
@@ -165,10 +182,14 @@ body {
   color: #242424;
 }
 
+.user-editor-form {
+  background-color: #fcf9ec;
+}
+
 .home {
   background: url('/Notebook.jpg');
   height: 100vh;
-  width: 98.7vw;
+  width: auto;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: fixed;
@@ -223,5 +244,11 @@ label {
 
 nav a {
   display: inline-block;
+  justify-content: center;
   margin: 1em;
+}
+
+.navbar h1 {
+  align-items: center;
+  justify-content: center;
 }

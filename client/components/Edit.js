@@ -96,8 +96,18 @@ export class Edit extends React.Component {
                 >
                   Delete
                 </button>
-                <input type="text" value={find} onChange={changeFind} />
-                <input type="text" value={replace} onChange={changeReplace} />
+                <input
+                  type="text"
+                  value={find}
+                  onChange={changeFind}
+                  placeholder="Find phrase"
+                />
+                <input
+                  type="text"
+                  value={replace}
+                  onChange={changeReplace}
+                  placeholder="Replace phrase"
+                />
               </div>
             )
           })}
