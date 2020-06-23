@@ -92,7 +92,7 @@ class EditorForm extends React.Component {
 
     let letter = this.state.body
     for (let [find, replace] of this.state.phrases) {
-      letter = letter.replace(find, replace)
+      letter = letter.split(find).join(replace)
     }
 
     this.setState({

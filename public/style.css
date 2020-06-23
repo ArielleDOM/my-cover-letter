@@ -32,6 +32,11 @@ html {
   box-shadow: 0 5px 15px 0 rgba(46, 61, 73, 0.12);
 }
 
+.err-msg {
+  padding-bottom: 1rem;
+  font-weight: bold;
+}
+
 .heading {
   font-size: 2.5em;
   font-weight: 500;
