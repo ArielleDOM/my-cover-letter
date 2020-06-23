@@ -1,5 +1,257 @@
 body {
-  font-family: sans-serif;
+  background-color: #fcf9ec;
+  margin: 0;
+  font-family: 'Roboto';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  background-color: #fcf9ec;
+}
+
+.vertical-center {
+  min-height: 100%;
+  min-height: 75vh;
+  display: flex;
+  align-items: center;
+}
+
+.notebook-img {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.login-container {
+  padding: 50px;
+  width: 50%;
+  margin: 40px auto;
+  box-shadow: 0 5px 15px 0 rgba(46, 61, 73, 0.12);
+}
+
+.heading {
+  font-size: 2.5em;
+  font-weight: 500;
+  padding-bottom: 10px;
+  margin-bottom: 18px;
+}
+
+.heading a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.heading a:hover {
+  background-color: #daac31;
+  text-decoration: none;
+  color: #242424;
+}
+
+/* .heading:hover{
+  background-color: #daac31;
+} */
+
+.form-heading {
+  padding-bottom: 10px;
+  margin-bottom: 18px;
+}
+
+.joinOuterContainer {
+  background-color: #fcf9ec;
+  margin: 0 auto;
+  padding: 1em;
+  border-radius: 2px;
+  position: relative;
+  width: 40vw;
+  min-width: 300px;
+  box-shadow: 0 5px 15px 0 rgba(46, 61, 73, 0.12);
+}
+
+.letterContainer {
+  display: flex;
+  flex-direction: row;
+  /* margin: 0 auto; */
+  padding: 1em;
+  border-radius: 2px;
+  position: relative;
+  width: auto;
+}
+.edit-title-input {
+  width: 30rem;
+}
+
+.edit-title {
+  font-weight: bolder;
+}
+
+.add-btn {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.writing {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 3rem;
+}
+
+.user-home {
+  height: auto;
+  width: auto;
+  padding: 2rem;
+  background: #fcf9ec;
+}
+
+.user-writing {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 3rem;
+}
+
+.user-new-cover {
+  width: 40vw;
+  background-color: white;
+  box-shadow: 0 5px 15px 0 rgba(46, 61, 73, 0.12);
+}
+
+.user-new-cover-writing {
+  padding: 1rem;
+}
+
+.slogan {
+  display: flex;
+  padding-top: 10rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.new-cover {
+  width: 40vw;
+  background-color: white;
+  box-shadow: 0 5px 15px 0 rgba(46, 61, 73, 0.12);
+}
+
+.new-cover-writing {
+  padding: 1rem;
+}
+
+.warning {
+  background-color: #ff7676;
+  width: 180px;
+  font-weight: bolder;
+}
+
+.brown-btn {
+  background-color: #b5a492;
+  border-radius: 5px;
+  width: 100px;
+}
+
+.brown-btn:hover {
+  width: 100px;
+  background-color: #85786b;
+}
+
+.cover-letter {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.delete-btn {
+  background-color: #b5a492;
+  border-radius: 5px;
+  width: 100px;
+}
+
+.delete-btn:hover {
+  background-color: #ff7676;
+}
+
+.divider {
+  width: 5px;
+  display: inline-block;
+}
+
+.home-btns {
+  padding-left: 5rem;
+}
+
+#single-cover {
+  display: flex;
+  flex-direction: row;
+}
+
+.links {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  size: 10%;
+}
+
+.links a {
+  margin: 1em;
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.links a:hover {
+  text-decoration: none;
+  background-color: #daac31;
+  color: #242424;
+}
+
+.user-editor-form {
+  background-color: #fcf9ec;
+}
+
+.home {
+  background: url('/Notebook.jpg');
+  height: 100vh;
+  width: auto;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: fixed;
+  position: relative;
+}
+
+.home-editor {
+  background-color: #fcf9ec;
+  padding-top: 10rem;
+  padding-bottom: 10rem;
+}
+
+div #app {
+  scroll-snap-align: center;
+  background-color: #fffef7;
+  height: 100vh;
+  padding-top: 2vh;
+  margin: auto;
+}
+
+#edit {
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  width: 80px;
+}
+
+#letter {
+  height: 30vh;
+  width: 40vw;
+}
+
+#logo {
+  font-family: 'Roboto';
+  font-size: 800%;
+}
+
+.description {
+  font-size: 120%;
 }
 
 a {
@@ -10,12 +262,31 @@ label {
   display: block;
 }
 
-nav a {
-  display: inline-block;
-  margin: 1em;
+.navbar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-form div {
+nav a {
   margin: 1em;
-  display: inline-block;
+  text-decoration: none;
+}
+
+.navbar a {
+  margin: 1em;
+  color: inherit;
+  text-decoration: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.navbar a:hover {
+  text-decoration: none;
+  background-color: #daac31;
+  color: #242424;
 }
